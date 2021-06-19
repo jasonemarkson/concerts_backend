@@ -3,46 +3,46 @@ class ConcertsController < ApplicationController
 
   # GET /concerts
   def index
-    @concerts = Concert.all
+    concerts = Concert.all
 
-    render json: @concerts
+    render json: concerts
   end
 
   # GET /concerts/1
   def show
-    render json: @concert
+    render json: concert
   end
 
   # POST /concerts
   def create
-    @concert = Concert.new(concert_params)
+    concert = Concert.new(concert_params)
 
-    if @concert.save
-      render json: @concert, status: :created, location: @concert
+    if concert.save
+      render json: concert, status: :created, location: concert
     else
-      render json: @concert.errors, status: :unprocessable_entity
+      render json: concert.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /concerts/1
   def update
-    if @concert.update(concert_params)
-      render json: @concert
+    if concert.update(concert_params)
+      render json: concert
     else
-      render json: @concert.errors, status: :unprocessable_entity
+      render json: concert.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /concerts/1
   def destroy
-    @concert.destroy
+    concert.destroy
     render json: {message: "Concert successfully deleted"}
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_concert
-      @concert = Concert.find(params[:id])
+      concert = Concert.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
