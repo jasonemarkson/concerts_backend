@@ -11,6 +11,6 @@ kol = Artist.create(name: "Kings of Leon")
 
 Concert.create([
     {venue: "B.B. King Blues Club & Grill", date: "June 6, 2009", city: "New York", state: "NY", artist_id: 1},
-    {venue: "Prudential Center", date: "May 4, 2012", city: "Neward", state: "NJ", artist_id: 2},
+    {venue: "Prudential Center", date: "May 4, 2012", city: "Newark", state: "NJ", artist_id: 2},
     {venue: "PNC Bank Arts Center", date: "May 20, 2017", city: "Holmdel", state: "NJ", artist_id: 3}
 ])

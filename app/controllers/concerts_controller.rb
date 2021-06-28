@@ -3,7 +3,12 @@ class ConcertsController < ApplicationController
 
   # GET /concerts
   def index
-    concerts = Concert.all
+
+    if params[:artist_id]
+      concerts = Concert.all.select { |c| c.artist_id == params[:artist_id].to_i }
+    else
+      concerts = Concert.all
+    end
 
     render json: concerts
   end

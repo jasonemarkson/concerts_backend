@@ -10,7 +10,7 @@ class ArtistsController < ApplicationController
 
   # GET /artists/1
   def show
-    render json: artist
+    render json: @artist
   end
 
   # POST /artists
@@ -26,23 +26,23 @@ class ArtistsController < ApplicationController
 
   # PATCH/PUT /artists/1
   def update
-    if artist.update(artist_params)
-      render json: artist
+    if @artist.update(artist_params)
+      render json: @artist
     else
-      render json: artist.errors, status: :unprocessable_entity
+      render json: @artist.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /artists/1
   def destroy
-    artist.destroy
+    @artist.destroy
     render json: {message: "Artist successfully deleted"}
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_artist
-      artist = Artist.find(params[:id])
+      @artist = Artist.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
