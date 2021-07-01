@@ -41,6 +41,7 @@ class ConcertsController < ApplicationController
 
   # DELETE /concerts/1
   def destroy
+    @concert = Concert.all.find_by_id(params[:id])
     @concert.destroy
     render json: {message: "Concert successfully deleted"}
   end
