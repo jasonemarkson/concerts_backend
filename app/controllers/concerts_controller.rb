@@ -15,7 +15,8 @@ class ConcertsController < ApplicationController
 
   # GET /concerts/1
   def show
-    render json: concert
+    @concert = Concert.all.find_by_id(params[:id])
+    render json: @concert
   end
 
   # POST /concerts
@@ -31,16 +32,16 @@ class ConcertsController < ApplicationController
 
   # PATCH/PUT /concerts/1
   def update
-    if concert.update(concert_params)
-      render json: concert
+    if @concert.update(concert_params)
+      render json: @concert
     else
-      render json: concert.errors, status: :unprocessable_entity
+      render json: @concert.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /concerts/1
   def destroy
-    concert.destroy
+    @concert.destroy
     render json: {message: "Concert successfully deleted"}
   end
 
@@ -52,6 +53,6 @@ class ConcertsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def concert_params
-      params.require(:concert).permit(:venue, :date, :artist_id)
+      params.require(:concert).permit(:venue, :date, :city, :state, :artist_id)
     end
 end
