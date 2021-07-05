@@ -15,8 +15,12 @@ class ConcertsController < ApplicationController
 
   # GET /concerts/1
   def show
-    @concert = Concert.all.find_by_id(params[:id])
-    render json: @concert
+    byebug
+    if @concert = Concert.all.find_by_id(params[:id])
+      render json: @concert
+    else
+      render json: {message: "Concert not found. Please try again"}
+    end
   end
 
   # POST /concerts
