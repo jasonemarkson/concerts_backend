@@ -3,6 +3,7 @@ class ConcertsController < ApplicationController
 
   # GET /concerts
   def index
+    
 
     if params[:artist_id]
       concerts = Concert.all.select { |c| c.artist_id == params[:artist_id].to_i }
@@ -15,7 +16,6 @@ class ConcertsController < ApplicationController
 
   # GET /concerts/1
   def show
-    byebug
     if @concert = Concert.all.find_by_id(params[:id])
       render json: @concert
     else
