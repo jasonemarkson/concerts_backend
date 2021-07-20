@@ -3,24 +3,21 @@ class ConcertsController < ApplicationController
 
   # GET /concerts
   def index
-    
 
-    if params[:artist_id]
-      concerts = Concert.all.select { |c| c.artist_id == params[:artist_id].to_i }
-    else
+
+    # if params[:artist_id]
+    #   concerts = Concert.all.select { |c| c.artist_id == params[:artist_id].to_i }
+    # else
       concerts = Concert.all
-    end
+    # end
 
-    render json: concerts
+    # render json: concerts, include: :artist
+    render json: ConcertSerializer.new(concerts).to_serialized_json
   end
 
   # GET /concerts/1
   def show
-    if @concert = Concert.all.find_by_id(params[:id])
-      render json: @concert
-    else
-      render json: {message: "Concert not found. Please try again"}
-    end
+    render json: ConcertSerializer.new(@concert).to_serialized_json
   end
 
   # POST /concerts
@@ -53,7 +50,8 @@ class ConcertsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_concert
-      concert = Concert.find(params[:id])
+      @concert = Concert.find(params[:id])
+      
     end
 
     # Only allow a list of trusted parameters through.

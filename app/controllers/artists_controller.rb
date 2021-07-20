@@ -5,12 +5,14 @@ class ArtistsController < ApplicationController
   def index
     artists = Artist.all
 
-    render json: artists, include: :concerts
+    # render json: artists, include: :concerts
+    render json: ArtistSerializer.new(artists).to_serialized_json
   end
 
   # GET /artists/1
   def show
-    render json: @artist
+    # render json: @artist
+    render json: ArtistSerializer.new(@artist).to_serialized_json
   end
 
   # POST /artists
