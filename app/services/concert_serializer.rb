@@ -4,8 +4,9 @@ class ConcertSerializer
     end
 
     def to_serialized_json
-        @concert.to_json(:include => {:artist => {:except => [:created_at, :updated_at]}},
-        :except => [:created_at, :updated_at]
-        )
+        @concert.to_json(:include => {
+        :artist => {:except => [:created_at, :updated_at]}
+        }, :except => [:created_at, :updated_at]
+    )
     end
 end

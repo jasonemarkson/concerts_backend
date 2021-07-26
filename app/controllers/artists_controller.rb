@@ -20,7 +20,7 @@ class ArtistsController < ApplicationController
     artist = Artist.new(artist_params)
 
     if artist.save
-      render json: artist, status: :created, location: artist
+      render json: ArtistSerializer.new(artist).to_serialized_json
     else
       render json: artist.errors, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class ArtistsController < ApplicationController
   # PATCH/PUT /artists/1
   def update
     if @artist.update(artist_params)
-      render json: @artist
+      render json: ArtistSerializer.new(@artist).to_serialized_json
     else
       render json: @artist.errors, status: :unprocessable_entity
     end
