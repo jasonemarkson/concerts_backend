@@ -18,7 +18,7 @@ class ConcertsController < ApplicationController
     concert = Concert.new(concert_params)
 
     if concert.save
-      render json: concert, status: :created, location: concert
+      render json: ConcertSerializer.new(concert).to_serialized_json
     else
       render json: concert.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class ConcertsController < ApplicationController
   # PATCH/PUT /concerts/1
   def update
     if @concert.update(concert_params)
-      render json: @concert
+      render json: ConcertSerializer.new(@concert).to_serialized_json
     else
       render json: @concert.errors, status: :unprocessable_entity
     end
